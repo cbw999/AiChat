@@ -2,15 +2,18 @@ const tokenSplit = require('./tokenSplit');
 
 describe('tokenSplit', () => {
   const text = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id.';
+  //const text = '한국어는 한국어 전용으로 문제가 있군.';
 
   it('returns correct text chunks with provided parameters', async () => {
     const result = await tokenSplit({
       text: text,
       encodingName: 'gpt2',
-      chunkSize: 2,
-      chunkOverlap: 1,
-      returnSize: 5,
+      chunkSize: 4,
+      chunkOverlap: 2,
+      returnSize: 10,
     });
+
+    console.log(result);
 
     expect(result).toEqual(['it.', '. Null', ' Nullam', 'am id', ' id.']);
   });
